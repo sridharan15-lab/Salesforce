@@ -1,0 +1,55 @@
+<template>
+        <lightning-card  title="@Track Property ss">
+            <div class="slds-var-m-around_medium">
+                <lightning-input 
+                  type="text"
+                  label="Enter City Name"
+                  onkeyup={trackhandler}
+                ></lightning-input>
+                <div> {address.city} is the city name. </div>
+            </div>
+          </lightning-card>
+
+            <lightning-card  title="Getter demo">
+              <div class="slds-var-m-around_medium">
+                <div>The firstname is {firstname} </div>
+              <div>multiple of {num1} and {num2} is {multiply}</div>
+                  
+              </div>
+            
+        </lightning-card>
+
+        <lightning-card  title="Conditional Rendering">
+          <div class="slds-var-m-around_medium">
+            <lightning-button variant="brand" 
+            label="Show Data" 
+            title="Show Data" 
+            onclick={handleClick} 
+            class="slds-var-m-left_x-small"></lightning-button>
+            <template if:true = {isVisible}>
+              <div>The data is now visible and true</div>
+            </template>
+
+            <template if:false = {isVisible}>
+              <div>You cannot see the Data</div>
+            </template>
+
+            <lightning-card  title="Rendering with String">
+              <div class="slds-var-m-around_medium">
+                  <lightning-input 
+                    type="text"
+                    label="Enter hello to see the data"
+                    onkeyup={changeHandler}
+                  ></lightning-input>
+                  <template if:true= {helloMethod}>
+                    <div>hurry! You typed correctly.</div>
+                  </template>
+              </div>
+            </lightning-card>
+              
+          </div>
+        
+    </lightning-card>
+</template>
+
+    
