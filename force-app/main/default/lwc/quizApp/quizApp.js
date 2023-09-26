@@ -3,7 +3,8 @@ import { LightningElement } from 'lwc';
 export default class QuizApp extends LightningElement {
 
     selected={} //storing valuees
-    correctAnswers=0 //show correct ans count
+    correctAnswers=0 //to show correct ans count
+    isSubmitted = false //to show text when submitted
 
     myQuestions=[
         {
@@ -57,6 +58,10 @@ export default class QuizApp extends LightningElement {
         return !(Object.keys(this.selected).length === this.myQuestions.length)
     }
 
+    get isScoredFull(){
+        return `slds-text-heading_large ${this.myQuestions.length === this.correctAnswers ? "slds-text-color_success" : "slds-text-color_error" }`
+    }
+
     changeHandler(event){
         console.log("name",event.target.name)
         console.log("value",event.target.value)
@@ -68,10 +73,19 @@ export default class QuizApp extends LightningElement {
         //this.selected={"question1":"a"}
     }
     submitHandler(event){
+        event.preventDefault()
+        //this.selected={"question1":"a","question2":"b"}
+        //item=>"question1"["a"] === this.myQuestion."c"
+        let correct = this.myQuestions.filter(item=>this.selected[item.id] === item.correctAnswer)
+        this.correctAnswers = correct.length
+        this.isSubmitted = true
         
 
     }
     resetHandler(event){
+        this.isSubmitted=false
+        this.correctAnswers=0
+        this.selected={}
 
     }
 }
